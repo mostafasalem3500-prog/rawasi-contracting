@@ -80,6 +80,9 @@ body{
 html[lang="en"] body{
   font-family:"Manrope","Segoe UI",Arial,sans-serif;
   line-height:1.65;
+  /* Manrope tops out at weight 800 (no 900/Black cut) — disable synthesis so the
+     browser never fakes a bold/900 style, which renders soft and unprofessional. */
+  font-synthesis:none;
 }
 
 img{ max-width:100%; display:block; }
@@ -90,15 +93,25 @@ button{ font-family:inherit; cursor:pointer; }
 input, select, textarea{ font-family:inherit; font-size:inherit; }
 
 h1,h2,h3,h4{ margin:0; line-height:1.45; font-weight:800; color:var(--navy-800); }
-h1{ font-size:var(--fs-h1); line-height:.98; font-weight:900; letter-spacing:-.01em; }
-h2{ font-size:var(--fs-h2); letter-spacing:-.005em; }
+h1{ font-size:var(--fs-h1); line-height:.98; font-weight:900; letter-spacing:-.01em; text-wrap:balance; }
+h2{ font-size:var(--fs-h2); letter-spacing:-.005em; text-wrap:balance; }
 h3{ font-size:var(--fs-h3); }
 p{ margin:0; color:var(--ink-700); }
+
+/* Pin English display weight to Manrope's real 800 cut instead of a synthesized 900. */
+html[lang="en"] h1, html[lang="en"] .hero-stat b{ font-weight:800; }
+
+/* Arabic script joins letterforms; positive/negative tracking breaks the joins
+   and looks broken. Reset all Latin-tuned letter-spacing for the Arabic page. */
+html[lang="ar"] h1, html[lang="ar"] h2,
+html[lang="ar"] .meta-label, html[lang="ar"] .eyebrow, html[lang="ar"] .hero-visual-tag{
+  letter-spacing:0;
+}
 
 /* -------- Meta label (editorial small-caps style tag) -------- */
 .meta-label{
   display:flex; align-items:center; gap:.6rem; font-size:var(--fs-meta); font-weight:700;
-  letter-spacing:.14em; text-transform:uppercase; color:var(--gold-600);
+  letter-spacing:.14em; text-transform:uppercase; color:var(--gold-700);
 }
 .meta-label::before{ content:""; width:26px; height:2px; background:var(--gold-500); flex:none; }
 .meta-label--onDark{ color:var(--gold-300); }
@@ -161,6 +174,19 @@ p{ margin:0; color:var(--ink-700); }
 .btn-ghost--onDark:hover{ background:var(--white); color:var(--navy-900); }
 .btn-block{ width:100%; }
 .btn svg{ width:18px; height:18px; }
+
+/* =========================================================
+   Focus states — a single accessible double-ring that stays
+   visible on both light and dark section backgrounds; only
+   shown for keyboard navigation via :focus-visible.
+   ========================================================= */
+a:focus-visible, button:focus-visible, summary:focus-visible,
+input:focus-visible, select:focus-visible, textarea:focus-visible,
+[tabindex]:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 2px var(--white), 0 0 0 5px var(--navy-900);
+  border-radius:inherit;
+}
 
 /* =========================================================
    Case-study disclosure bar
@@ -445,7 +471,7 @@ p{ margin:0; color:var(--ink-700); }
 .stats{ background:var(--gold-500); }
 .stats-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:var(--sp-6); text-align:center; }
 .stat b{ display:block; font-size:clamp(2rem,1.7rem + 1.2vw,3rem); font-weight:800; color:var(--navy-900); font-variant-numeric:tabular-nums; }
-.stat span{ font-weight:700; color:rgba(11,31,58,.75); font-size:.92rem; }
+.stat span{ font-weight:700; color:rgba(11,31,58,.88); font-size:.92rem; }
 @media (max-width:700px){ .stats-grid{ grid-template-columns:1fr 1fr; row-gap:var(--sp-6); } }
 
 /* =========================================================
@@ -522,7 +548,7 @@ p{ margin:0; color:var(--ink-700); }
   transition:border-color var(--dur-hover) var(--ease-out), box-shadow var(--dur-hover) var(--ease-out); color:var(--ink-900);
 }
 .field input:focus, .field select:focus, .field textarea:focus{
-  outline:none; border-color:var(--gold-500); box-shadow:0 0 0 4px rgb(201 162 39 / .18);
+  outline:none; border-color:var(--gold-600); box-shadow:0 0 0 4px rgb(166 111 20 / .22);
 }
 .field small{ font-size:.76rem; color:var(--ink-500); }
 .field input[type="email"], .field input[type="tel"]{ direction:ltr; text-align:start; }
