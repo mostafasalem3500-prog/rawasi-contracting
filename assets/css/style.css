@@ -2,7 +2,7 @@
    رواسي للمقاولات العامة — Design System & Styles
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap');
 
 :root{
   /* -------- Color: Structural Navy / Forged Amber -------- */
@@ -76,6 +76,10 @@ body{
   color:var(--ink-900);
   background:var(--surface);
   -webkit-font-smoothing:antialiased;
+}
+html[lang="en"] body{
+  font-family:"Manrope","Segoe UI",Arial,sans-serif;
+  line-height:1.65;
 }
 
 img{ max-width:100%; display:block; }
@@ -157,6 +161,31 @@ p{ margin:0; color:var(--ink-700); }
 .btn-ghost--onDark:hover{ background:var(--white); color:var(--navy-900); }
 .btn-block{ width:100%; }
 .btn svg{ width:18px; height:18px; }
+
+/* =========================================================
+   Case-study disclosure bar
+   ========================================================= */
+.case-study-bar{
+  background:var(--navy-900); color:rgba(246,243,236,.78);
+  font-size:.78rem; font-weight:600; text-align:center;
+  padding:.55rem var(--sp-4); line-height:1.5;
+}
+.case-study-bar a{ color:var(--gold-400); text-decoration:underline; text-underline-offset:3px; font-weight:700; }
+.case-study-bar a:hover{ color:var(--gold-300); }
+
+/* =========================================================
+   Language switcher
+   ========================================================= */
+.lang-switch{
+  display:flex; align-items:center; gap:.2rem; font-size:.8rem; font-weight:800;
+  background:var(--cream-100); border-radius:999px; padding:.25rem; flex:none;
+}
+.lang-switch a{
+  padding:.4rem .85rem; border-radius:999px; color:var(--ink-500);
+  transition:background var(--dur-hover) var(--ease-out), color var(--dur-hover) var(--ease-out);
+}
+.lang-switch a.is-active{ background:var(--navy-800); color:var(--white); }
+.lang-switch a:not(.is-active):hover{ color:var(--navy-800); }
 
 /* =========================================================
    Header

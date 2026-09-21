@@ -45,12 +45,17 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  let filePath = safeJoin(ROOT, urlPath === "/" ? "/index.html" : urlPath);
+  const resolvedPath = urlPath.endsWith("/") ? urlPath + "index.html" : urlPath;
+  let filePath = safeJoin(ROOT, resolvedPath === "/index.html" ? "/index.html" : resolvedPath);
 
   fs.stat(filePath, (err, stat) => {
     if (err || !stat.isFile()) {
-      // Fallback to index.html for clean URLs / unknown paths (single-page site)
-      filePath = path.join(ROOT, "index.html");
+      // Fallback to the nearest index.html: /ar/... falls back to the Arabic
+      // section's own index, everything else falls back to the English root
+      // (clean URLs / unknown paths on this single-page-per-locale site).
+      filePath = urlPath.startsWith("/ar/") || urlPath === "/ar"
+        ? path.join(ROOT, "ar", "index.html")
+        : path.join(ROOT, "index.html");
     }
     const ext = path.extname(filePath).toLowerCase();
     const contentType = MIME[ext] || "application/octet-stream";

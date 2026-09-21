@@ -2,7 +2,14 @@
   "use strict";
 
   const prefersMotion = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
-  if (prefersMotion) document.documentElement.classList.add("motion");
+  const hasGSAP = prefersMotion && typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined";
+  const pointerFine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  if (prefersMotion && !hasGSAP) document.documentElement.classList.add("motion");
+  if (hasGSAP) {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.set("[data-reveal]", { autoAlpha: 0, y: 28 });
+  }
 
   /* ---------------- Footer year ---------------- */
   const yearEl = document.getElementById("year");
@@ -72,7 +79,21 @@
 
   /* ---------------- Reveal on scroll ---------------- */
   const revealEls = document.querySelectorAll("[data-reveal]");
-  if (prefersMotion && "IntersectionObserver" in window) {
+  if (hasGSAP) {
+    revealEls.forEach((el) => {
+      gsap.fromTo(
+        el,
+        { autoAlpha: 0, y: 28 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.75,
+          ease: "expo.out",
+          scrollTrigger: { trigger: el, start: "top 88%", once: true },
+        }
+      );
+    });
+  } else if (prefersMotion && "IntersectionObserver" in window) {
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry, i) => {
@@ -100,25 +121,38 @@
   });
 
   /* ---------------- Number counters ---------------- */
-  const fmt = new Intl.NumberFormat("ar-SA-u-nu-latn");
-  function animateCount(el) {
-    const target = Number(el.dataset.count || "0");
-    if (!prefersMotion) {
-      el.textContent = fmt.format(target);
-      return;
-    }
-    const duration = 1500;
-    const start = performance.now();
-    function tick(now) {
-      const p = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = fmt.format(Math.round(eased * target));
-      if (p < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
+  const fmt = new Intl.NumberFormat(window.SITE_LOCALE || "en-US");
+  function setFinalCount(el) {
+    el.textContent = fmt.format(Number(el.dataset.count || "0"));
   }
   const counters = document.querySelectorAll("[data-count]");
-  if ("IntersectionObserver" in window) {
+  if (hasGSAP) {
+    counters.forEach((el) => {
+      const target = Number(el.dataset.count || "0");
+      const obj = { v: 0 };
+      gsap.to(obj, {
+        v: target,
+        duration: 1.6,
+        ease: "power2.out",
+        scrollTrigger: { trigger: el, start: "top 88%", once: true },
+        onUpdate: () => {
+          el.textContent = fmt.format(Math.round(obj.v));
+        },
+      });
+    });
+  } else if (prefersMotion && "IntersectionObserver" in window) {
+    function animateCount(el) {
+      const target = Number(el.dataset.count || "0");
+      const duration = 1500;
+      const start = performance.now();
+      function tick(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt.format(Math.round(eased * target));
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
     const countIO = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -132,7 +166,7 @@
     );
     counters.forEach((el) => countIO.observe(el));
   } else {
-    counters.forEach(animateCount);
+    counters.forEach(setFinalCount);
   }
 
   /* ---------------- Back to top ---------------- */
@@ -144,64 +178,40 @@
     window.scrollTo({ top: 0, behavior: prefersMotion ? "smooth" : "auto" });
   });
 
-  /* ---------------- Projects data + render ---------------- */
-  const PROJECTS = [
-    {
-      title: "مجمع أبراج الواحة السكني",
-      loc: "الرياض",
-      cat: "residential",
-      catLabel: "سكني",
-      desc: "3 أبراج سكنية بارتفاع 22 طابقًا و480 وحدة سكنية.",
-      icon: "ic-building",
-      photo: "assets/img/photos/proj-residential.webp",
-      featured: true,
-    },
-    {
-      title: "الطريق الدائري الشرقي",
-      loc: "جدة",
-      cat: "infrastructure",
-      catLabel: "بنية تحتية",
-      desc: "42 كم من الطرق وجسور تقاطعات متعددة المستويات.",
-      icon: "ic-road",
-      photo: "assets/img/photos/proj-infra-road.webp",
-    },
-    {
-      title: "مصنع الأفق للصناعات الغذائية",
-      loc: "الدمام",
-      cat: "industrial",
-      catLabel: "صناعي",
-      desc: "منشأة صناعية بمساحة 38,000 م² وخطوط إنتاج متكاملة.",
-      icon: "ic-factory",
-      photo: "assets/img/photos/proj-industrial.webp",
-    },
-    {
-      title: "مركز رواسي بلازا التجاري",
-      loc: "مكة المكرمة",
-      cat: "commercial",
-      catLabel: "تجاري",
-      desc: "مركز تجاري متعدد الطوابق بمواقف لأكثر من 1,200 سيارة.",
-      icon: "ic-store",
-      photo: "assets/img/photos/proj-commercial.webp",
-    },
-    {
-      title: "مجمع مستشفى الشفاء التخصصي",
-      loc: "المدينة المنورة",
-      cat: "health",
-      catLabel: "صحي",
-      desc: "منشأة طبية بسعة 260 سريرًا و12 قسمًا متخصصًا.",
-      icon: "ic-cross",
-      photo: "assets/img/photos/proj-health.webp",
-    },
-    {
-      title: "محطة معالجة مياه النخيل",
-      loc: "الخبر",
-      cat: "infrastructure",
-      catLabel: "بنية تحتية",
-      desc: "محطة بطاقة معالجة تصل إلى 45,000 م³ يوميًا.",
-      icon: "ic-road",
-      photo: "assets/img/photos/proj-infra-water.webp",
-    },
-  ];
+  /* ---------------- Magnetic primary buttons (desktop pointer only) ---------------- */
+  if (hasGSAP && pointerFine) {
+    document.querySelectorAll("[data-magnetic]").forEach((el) => {
+      const xTo = gsap.quickTo(el, "x", { duration: 0.4, ease: "power3" });
+      const yTo = gsap.quickTo(el, "y", { duration: 0.4, ease: "power3" });
+      el.addEventListener("pointermove", (e) => {
+        const r = el.getBoundingClientRect();
+        xTo((e.clientX - r.left - r.width / 2) * 0.25);
+        yTo((e.clientY - r.top - r.height / 2) * 0.25);
+      });
+      el.addEventListener("pointerleave", () => {
+        xTo(0);
+        yTo(0);
+      });
+    });
+  }
+
+  /* ---------------- Projects data + render (with subtle 3D tilt, desktop pointer only) ---------------- */
+  const PROJECTS = window.SITE_PROJECTS || [];
+
+  function attachTilt(card) {
+    const MAX = 6;
+    card.addEventListener("pointermove", (e) => {
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width;
+      const py = (e.clientY - r.top) / r.height;
+      const rx = (0.5 - py) * MAX * 2;
+      const ry = (px - 0.5) * MAX * 2;
+      card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+    });
+    card.addEventListener("pointerleave", () => {
+      card.style.transform = "";
+    });
+  }
 
   const grid = document.getElementById("projectsGrid");
   if (grid) {
@@ -220,6 +230,10 @@
         </div>
       </article>`
     ).join("");
+
+    if (prefersMotion && pointerFine) {
+      grid.querySelectorAll(".project-card").forEach(attachTilt);
+    }
   }
 
   const filterBtns = document.querySelectorAll(".filter-btn");
@@ -255,7 +269,7 @@
     e.preventDefault();
     const input = document.getElementById("nlEmail");
     if (input) {
-      input.placeholder = "تم الاشتراك بنجاح ✓";
+      input.placeholder = (window.SITE_STRINGS && window.SITE_STRINGS.newsletterSuccess) || "Subscribed successfully ✓";
       input.value = "";
     }
   });
