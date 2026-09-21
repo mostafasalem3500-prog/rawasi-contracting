@@ -2,3 +2,5 @@ node_modules/
 .DS_Store
 *.log
 .env
+assets/img/photos/*.png
+assets/img/photos/process.py

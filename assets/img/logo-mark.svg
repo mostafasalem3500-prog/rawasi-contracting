@@ -1,10 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="logoMarkTitle">
   <title id="logoMarkTitle">شعار رواسي للمقاولات العامة</title>
-  <rect x="1" y="1" width="62" height="62" rx="16" fill="#0B1F3A"/>
-  <rect x="1" y="1" width="62" height="62" rx="16" fill="none" stroke="#C9A227" stroke-width="1.2" opacity="0.5"/>
-  <circle cx="46" cy="18" r="5.5" fill="#E9DDB8" opacity="0.9"/>
-  <polygon points="14,46 24,26 30,36 34,30 42,46" fill="#8E6D14" opacity="0.55"/>
-  <polygon points="18,46 30,20 44,46" fill="#C9A227"/>
-  <polygon points="27,46 30,40.5 33,46" fill="#0B1F3A"/>
-  <rect x="12" y="46" width="40" height="4" rx="1.5" fill="#E9DDB8"/>
+  <rect x="1" y="1" width="62" height="62" rx="7" fill="#04090F"/>
+  <rect x="1" y="1" width="62" height="62" rx="7" fill="none" stroke="#C68A1F" stroke-width="1" opacity="0.4"/>
+  <polygon points="10,44 22,17 28,29" fill="#7C520E"/>
+  <polygon points="44,44 32,15 20,44" fill="#C68A1F"/>
+  <polygon points="30,44 32,40 34,44" fill="#04090F"/>
+  <polygon points="34,44 46,20 54,44" fill="#E3B85C"/>
+  <rect x="9" y="46" width="46" height="3.4" fill="#F0D08C"/>
+  <rect x="9" y="51" width="30" height="2" fill="#F0D08C" opacity="0.45"/>
 </svg>

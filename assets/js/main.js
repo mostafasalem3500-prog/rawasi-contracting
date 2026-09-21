@@ -153,6 +153,8 @@
       catLabel: "سكني",
       desc: "3 أبراج سكنية بارتفاع 22 طابقًا و480 وحدة سكنية.",
       icon: "ic-building",
+      photo: "assets/img/photos/proj-residential.webp",
+      featured: true,
     },
     {
       title: "الطريق الدائري الشرقي",
@@ -161,6 +163,7 @@
       catLabel: "بنية تحتية",
       desc: "42 كم من الطرق وجسور تقاطعات متعددة المستويات.",
       icon: "ic-road",
+      photo: "assets/img/photos/proj-infra-road.webp",
     },
     {
       title: "مصنع الأفق للصناعات الغذائية",
@@ -169,6 +172,7 @@
       catLabel: "صناعي",
       desc: "منشأة صناعية بمساحة 38,000 م² وخطوط إنتاج متكاملة.",
       icon: "ic-factory",
+      photo: "assets/img/photos/proj-industrial.webp",
     },
     {
       title: "مركز رواسي بلازا التجاري",
@@ -177,6 +181,7 @@
       catLabel: "تجاري",
       desc: "مركز تجاري متعدد الطوابق بمواقف لأكثر من 1,200 سيارة.",
       icon: "ic-store",
+      photo: "assets/img/photos/proj-commercial.webp",
     },
     {
       title: "مجمع مستشفى الشفاء التخصصي",
@@ -185,6 +190,7 @@
       catLabel: "صحي",
       desc: "منشأة طبية بسعة 260 سريرًا و12 قسمًا متخصصًا.",
       icon: "ic-cross",
+      photo: "assets/img/photos/proj-health.webp",
     },
     {
       title: "محطة معالجة مياه النخيل",
@@ -193,38 +199,19 @@
       catLabel: "بنية تحتية",
       desc: "محطة بطاقة معالجة تصل إلى 45,000 م³ يوميًا.",
       icon: "ic-road",
+      photo: "assets/img/photos/proj-infra-water.webp",
     },
   ];
-
-  const THUMB_SHADES = ["#122a4d", "#0B1F3A", "#1b3660"];
-
-  function projectThumbSVG(icon, seed) {
-    const shade = THUMB_SHADES[seed % THUMB_SHADES.length];
-    return `
-      <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <pattern id="pgrid${seed}" width="24" height="24" patternUnits="userSpaceOnUse">
-            <path d="M24 0H0V24" fill="none" stroke="#C9A227" stroke-width="0.5" opacity="0.16"/>
-          </pattern>
-        </defs>
-        <rect width="400" height="300" fill="${shade}"/>
-        <rect width="400" height="300" fill="url(#pgrid${seed})"/>
-        <circle cx="335" cy="55" r="34" fill="none" stroke="#C9A227" stroke-width="1.5" opacity="0.6"/>
-        <g transform="translate(150,90)" color="#E9DDB8">
-          <use href="#${icon}" width="100" height="100"/>
-        </g>
-        <path d="M0 260h400" stroke="#C9A227" stroke-width="1" opacity="0.4"/>
-      </svg>`;
-  }
 
   const grid = document.getElementById("projectsGrid");
   if (grid) {
     grid.innerHTML = PROJECTS.map(
-      (p, i) => `
-      <article class="project-card" data-cat="${p.cat}">
+      (p) => `
+      <article class="project-card${p.featured ? " is-featured" : ""}" data-cat="${p.cat}">
         <div class="project-thumb">
-          ${projectThumbSVG(p.icon, i)}
+          <img src="${p.photo}" alt="${p.title}" loading="lazy">
           <span class="project-tag">${p.catLabel}</span>
+          <span class="project-icon"><svg><use href="#${p.icon}"/></svg></span>
         </div>
         <div class="project-body">
           <h3>${p.title}</h3>
