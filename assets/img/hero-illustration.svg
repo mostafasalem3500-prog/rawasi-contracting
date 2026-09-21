@@ -1,0 +1,61 @@
+<svg viewBox="60 -140 720 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="heroIllTitle" preserveAspectRatio="xMidYMid meet">
+<title id="heroIllTitle">رسم توضيحي أيزومتري لموقع إنشاءات ورافعة برجية</title>
+<defs>
+  <pattern id="blueGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+    <path d="M30 0H0V30" fill="none" stroke="#1B3660" stroke-width="0.6" opacity="0.28"/>
+  </pattern>
+  <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#C9A227" stop-opacity="0.5"/>
+    <stop offset="100%" stop-color="#C9A227" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="groundGlow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#000000" stop-opacity="0.16"/>
+    <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+
+<rect x="60" y="-140" width="720" height="480" fill="url(#blueGrid)"/>
+<circle cx="700" cy="-60" r="130" fill="url(#sunGlow)"/>
+<circle cx="700" cy="-60" r="38" fill="#F3E3A6" stroke="#C9A227" stroke-width="2.5"/>
+<ellipse cx="420" cy="322" rx="360" ry="22" fill="url(#groundGlow)"/>
+<line x1="70" y1="300" x2="770" y2="300" stroke="#C9A227" stroke-width="2" opacity="0.5"/>
+
+
+<g stroke="#0B1F3A" stroke-width="5" stroke-linecap="round" fill="none">
+  <line x1="430" y1="-80" x2="430" y2="300"/>
+  <line x1="170" y1="-60" x2="500" y2="-60"/>
+  <line x1="430" y1="-80" x2="170" y2="-60"/>
+  <line x1="430" y1="-80" x2="500" y2="-60"/>
+  <line x1="210" y1="-60" x2="210" y2="60"/>
+</g>
+<rect x="420" y="290" width="20" height="12" fill="#0B1F3A"/>
+<rect x="476" y="-60" width="28" height="18" fill="#C9A227" stroke="#0B1F3A" stroke-width="2"/>
+<rect x="198" y="60" width="26" height="20" rx="2" fill="#C9A227" stroke="#0B1F3A" stroke-width="2"/>
+
+
+<polygon points="88.0,179.0 140.0,205.0 140.0,300.0 88.0,274.0" fill="#D8CDA0" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+<polygon points="140.0,205.0 192.0,179.0 192.0,274.0 140.0,300.0" fill="#B9A662" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+<polygon points="140.0,153.0 192.0,179.0 140.0,205.0 88.0,179.0" fill="#EFEAD8" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+
+<polygon points="200.0,104.0 252.0,130.0 252.0,300.0 200.0,274.0" fill="#C9A227" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+<polygon points="252.0,130.0 304.0,104.0 304.0,274.0 252.0,300.0" fill="#8E6D14" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+<polygon points="252.0,78.0 304.0,104.0 252.0,130.0 200.0,104.0" fill="#E9DDB8" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+
+<polygon points="312.0,39.0 364.0,65.0 364.0,300.0 312.0,274.0" fill="#2E3F63" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+<polygon points="364.0,65.0 416.0,39.0 416.0,274.0 364.0,300.0" fill="#1A2743" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+<polygon points="364.0,13.0 416.0,39.0 364.0,65.0 312.0,39.0" fill="#4A6088" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+
+<polygon points="424.0,144.0 476.0,170.0 476.0,300.0 424.0,274.0" fill="#D8CDA0" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+<polygon points="476.0,170.0 528.0,144.0 528.0,274.0 476.0,300.0" fill="#B9A662" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+<polygon points="476.0,118.0 528.0,144.0 476.0,170.0 424.0,144.0" fill="#EFEAD8" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+
+<polygon points="536.0,99.0 588.0,125.0 588.0,300.0 536.0,274.0" fill="#C9A227" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+<polygon points="588.0,125.0 640.0,99.0 640.0,274.0 588.0,300.0" fill="#8E6D14" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+<polygon points="588.0,73.0 640.0,99.0 588.0,125.0 536.0,99.0" fill="#E9DDB8" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+
+<polygon points="648.0,194.0 700.0,220.0 700.0,300.0 648.0,274.0" fill="#2E3F63" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+<polygon points="700.0,220.0 752.0,194.0 752.0,274.0 700.0,300.0" fill="#1A2743" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+<polygon points="700.0,168.0 752.0,194.0 700.0,220.0 648.0,194.0" fill="#4A6088" stroke="#0B1F3A" stroke-width="1.6" stroke-linejoin="round"/>
+
+
+</svg>

@@ -1,0 +1,13 @@
+{
+  "name": "rawasi-contracting-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "صفحة هبوط احترافية لشركة مقاولات (بيانات وهمية) — سابقة أعمال",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
