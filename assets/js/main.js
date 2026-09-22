@@ -239,8 +239,12 @@
   const filterBtns = document.querySelectorAll(".filter-btn");
   filterBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      filterBtns.forEach((b) => b.classList.remove("is-active"));
+      filterBtns.forEach((b) => {
+        b.classList.remove("is-active");
+        b.setAttribute("aria-pressed", "false");
+      });
       btn.classList.add("is-active");
+      btn.setAttribute("aria-pressed", "true");
       const filter = btn.dataset.filter;
       document.querySelectorAll(".project-card").forEach((card) => {
         const show = filter === "all" || card.dataset.cat === filter;

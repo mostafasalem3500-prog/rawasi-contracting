@@ -7,14 +7,32 @@
 <meta name="description" content="رواسي للمقاولات العامة تنفّذ مشاريع المقاولات العامة والبنية التحتية والإنشاءات الصناعية والتجارية في جميع مناطق المملكة العربية السعودية، بالتزام تام بالجودة والسلامة والمواعيد.">
 <meta name="theme-color" content="#04090F">
 
+<link rel="canonical" href="https://rawasi-web-production.up.railway.app/ar/">
+
 <meta property="og:type" content="website">
 <meta property="og:title" content="رواسي للمقاولات العامة">
 <meta property="og:description" content="شريكك الهندسي لمشاريع المقاولات والبنية التحتية في السعودية — أساسٌ راسخ لكل مشروع يستحق أن يبقى.">
 <meta property="og:locale" content="ar_SA">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:url" content="https://rawasi-web-production.up.railway.app/ar/">
+<meta property="og:site_name" content="رواسي للمقاولات العامة">
+<meta property="og:image" content="https://rawasi-web-production.up.railway.app/assets/img/icons/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="رواسي للمقاولات العامة — مقاولات وبنية تحتية وإدارة مشاريع في السعودية">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="رواسي للمقاولات العامة">
+<meta name="twitter:description" content="شريكك الهندسي لمشاريع المقاولات والبنية التحتية في السعودية — أساسٌ راسخ لكل مشروع يستحق أن يبقى.">
+<meta name="twitter:image" content="https://rawasi-web-production.up.railway.app/assets/img/icons/og-cover.jpg">
 <link rel="alternate" hreflang="ar" href="/ar/">
 <link rel="alternate" hreflang="en" href="/">
+<link rel="alternate" hreflang="x-default" href="/">
 
 <link rel="icon" type="image/svg+xml" href="../assets/img/logo-mark.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/img/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="../assets/img/icons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="../assets/css/style.css">
@@ -197,7 +215,7 @@
     <div class="hero-visual" data-reveal>
       <div class="hero-visual-frame">
         <span class="hero-visual-tag">موقع تنفيذ حي</span>
-        <img src="../assets/img/photos/hero.webp" width="1920" height="1080" alt="موقع إنشاءات في السعودية عند غروب الشمس، رافعة برجية بجانب برج قيد الإنشاء">
+        <img src="../assets/img/photos/hero.webp" width="1920" height="1080" fetchpriority="high" alt="موقع إنشاءات في السعودية عند غروب الشمس، رافعة برجية بجانب برج قيد الإنشاء">
       </div>
       <div class="hero-visual-card">
         <span class="ic"><svg><use href="#ic-shield"/></svg></span>
@@ -235,7 +253,7 @@
 <section class="section about" id="about">
   <div class="container about-grid">
     <div class="about-visual" data-reveal>
-      <img src="../assets/img/photos/about.webp" width="1000" height="1333" alt="مهندس يشير إلى مخططات هندسية على طاولة في موقع إنشاءات، ورافعة برجية في الخلفية">
+      <img src="../assets/img/photos/about.webp" width="1000" height="1333" loading="lazy" alt="مهندس يشير إلى مخططات هندسية على طاولة في موقع إنشاءات، ورافعة برجية في الخلفية">
       <div class="about-badge"><b>2007</b><span>سنة التأسيس</span></div>
     </div>
 
@@ -373,13 +391,13 @@
       <p data-reveal style="margin-block-start:var(--sp-4)">نماذج من مشاريعنا المنجزة في مختلف القطاعات ومناطق المملكة.</p>
     </div>
 
-    <div class="filters" data-reveal role="tablist" aria-label="تصنيف المشاريع">
-      <button class="filter-btn is-active" data-filter="all">الكل</button>
-      <button class="filter-btn" data-filter="residential">سكني</button>
-      <button class="filter-btn" data-filter="commercial">تجاري</button>
-      <button class="filter-btn" data-filter="industrial">صناعي</button>
-      <button class="filter-btn" data-filter="infrastructure">بنية تحتية</button>
-      <button class="filter-btn" data-filter="health">صحي</button>
+    <div class="filters" data-reveal role="group" aria-label="تصنيف المشاريع">
+      <button class="filter-btn is-active" data-filter="all" aria-pressed="true">الكل</button>
+      <button class="filter-btn" data-filter="residential" aria-pressed="false">سكني</button>
+      <button class="filter-btn" data-filter="commercial" aria-pressed="false">تجاري</button>
+      <button class="filter-btn" data-filter="industrial" aria-pressed="false">صناعي</button>
+      <button class="filter-btn" data-filter="infrastructure" aria-pressed="false">بنية تحتية</button>
+      <button class="filter-btn" data-filter="health" aria-pressed="false">صحي</button>
     </div>
 
     <div class="projects-grid" data-reveal id="projectsGrid">
